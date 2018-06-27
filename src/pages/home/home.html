@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Tasks
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="createTask()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor='let task of tasks | async'>
+      <ion-item>
+        <ion-label>{{ task.title }}</ion-label>
+        <ion-checkbox (ionChange)="updateTask( task )" [checked]="task.done"></ion-checkbox>
+      </ion-item>
+       <ion-item-options>
+        <button ion-button color="danger" (click)="removeTask( task )">
+          Delete
+        </button>
+       </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
